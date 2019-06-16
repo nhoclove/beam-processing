@@ -18,6 +18,21 @@ repo_id,repo_name,health_score,num_stars,num_folks,created_at,avg_commits_per_da
 ...
 ```
 
+## Structure
+```
+    beam-processing
+                |__ logs
+                |__ output
+                |     |__ data-*.csv   ---> Default output data dir
+                |     |__ ...
+                |__ src
+                |     |__ ...
+                |__ target
+                |     |__ ...
+                |     |__ beam-processing-<version>.jar  ---> Executable jar file
+                |__ pom.xml
+                |__ README.md
+```
 ## Dependencies
 1. [beam-sdks-java-core 2.13.0](https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-core/2.13.0)
 2. [beam-runners-direct-java 2.13.0](https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java/2.13.0)
