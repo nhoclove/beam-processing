@@ -18,6 +18,21 @@ repo_id,repo_name,health_score,num_stars,num_folks,created_at,avg_commits_per_da
 ...
 ```
 
+## Structure
+```
+    beam-processing
+                |__ logs
+                |__ output
+                |     |__ data-*.csv   ---> Default output data dir
+                |     |__ ...
+                |__ src
+                |     |__ ...
+                |__ target
+                |     |__ ...
+                |     |__ beam-processing-<version>.jar  ---> Executable jar file
+                |__ pom.xml
+                |__ README.md
+```
 ## Dependencies
 1. [beam-sdks-java-core 2.13.0](https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-core/2.13.0)
 2. [beam-runners-direct-java 2.13.0](https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java/2.13.0)
@@ -31,17 +46,18 @@ repo_id,repo_name,health_score,num_stars,num_folks,created_at,avg_commits_per_da
 
 ## Configuration
 Due to the [rate-limit](https://developer.github.com/v3/#rate-limiting) of Github API v3, we need `Personal access tokens` 
-from Github to bypass this
+from Github to bypass this:
 1. Generate a new token [here](https://github.com/settings/tokens).
 2. Set the newly generated token in `config.properties` file under section `github.token`.
 
 ## Run
 ### 1. Run unit test
-    `$ mvn test`
+`$ mvn test`
 ### 2. Run locally
 For testing and development purposes, It can run on local direct runner with the following command:
-
-    `$ mvn clean package exec:java -Dexec.mainClass=com.nvbac.beam.Application -Pdirect-runner -Dexec.args="--runner=DirectRunner" -DskipTests`
+```
+$ mvn clean package exec:java -Dexec.mainClass=com.nvbac.beam.Application -Pdirect-runner -Dexec.args="--runner=DirectRunner" -DskipTests
+```
 ### 3. Run on other runners
 
 - Apache Spark:
