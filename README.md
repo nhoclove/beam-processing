@@ -43,12 +43,20 @@ For testing and development purposes, It can run on local direct runner with the
 
     `$ mvn clean package exec:java -Dexec.mainClass=com.nvbac.beam.Application -Pdirect-runner -Dexec.args="--runner=DirectRunner" -DskipTests`
 ### 3. Run on other runners
-   Not tested on Spark, Flink, Apex runner yet.
+
+- Apache Spark:
+    
+```
+$ mvn clean package -Pspark-runner
+$ spark-submit --class com.nvbac.beam.Application --master spark://HOST:PORT target/beam-processing-0.0.1-shaded.jar --runner=SparkRunner
+```
+    
+- Apache Flink, Samza ...  `Not tested yet`.
    
 ## Technical decisions
 1. Apache Beam:
     - Provides an advanced unified programming model.
-    - The pipelines can execute on multiple execution engines such as: Apex, Flink, Spark, samza... 
+    - The pipelines can execute on multiple execution engines such as: Apex, Flink, Spark, Samza... 
     - Support both batch and streaming processing.
     - Provides a rich APIs and Interfaces for pipeline implementations.
 2. Google HTTP Client Library For Java:
